@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myproject/botao.dart';
+import 'package:myproject/camera.dart';
 import 'package:myproject/config.dart';
 import 'package:myproject/estilos.dart';
 import 'package:myproject/cardNoticias.dart';
@@ -75,46 +77,56 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
 
                       // Coluna Rolável Horizontal com Botões
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 31 * ffem, vertical: 15 * ffem),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 31 * ffem, vertical: 15 * ffem),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
+                              SizedBox(
+                                  width: 10), // Espaçamento entre os botões
                               BtnPadraoSquare(
-                                onTap: () {},
-                                textBtn: 'Botão 1',
-                                iconColor: Estilos.branco,
-                                isLoading: false,
-                                secondTextBtn: 'Texto adicional 1',
-                              ),
-                              SizedBox(width: 10), // Espaçamento entre os botões
-                              BtnPadraoSquare(
-                                onTap: () {},
-                                textBtn: 'Botão 2',
-                                iconColor: const Color.fromARGB(255, 255, 35, 35),
-                                isLoading: false,
-                                secondTextBtn: 'Texto adicional 2',
-                              ),
-                              SizedBox(width: 10), // Espaçamento entre os botões
-                              BtnPadraoSquare(
-                                onTap: () {},
-                                textBtn: 'Botão 3',
-                                iconColor: Estilos.branco,
-                                isLoading: false,
-                                secondTextBtn: 'Texto adicional 3',
+                                onTap: () => Navigator.push(
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) =>
+                                            const CameraApp())),
+                                icon: Icons
+                                    .add_a_photo_rounded, // Ícone personalizado
+                                textBtn: "Casa",
+                                bgIconColor: Colors.blue.shade100,
+                                iconColor: Colors.blue,
                               ),
                               BtnPadraoSquare(
-                                onTap: () {},
-                                textBtn: 'Botão 2',
-                                iconColor: Estilos.branco,
-                                isLoading: false,
-                                secondTextBtn: 'Texto adicional 2',
-                              ),BtnPadraoSquare(
-                                onTap: () {},
-                                textBtn: 'Botão 2',
-                                iconColor: Estilos.branco,
-                                isLoading: false,
-                                secondTextBtn: 'Texto adicional 2',
+                                onTap: () =>
+                                    Navigator.pushNamed(context, "camera"),
+                                icon: Icons
+                                    .auto_stories_rounded, // Ícone personalizado
+                                textBtn: "Casa",
+                                bgIconColor: Colors.blue.shade100,
+                                iconColor: Colors.blue,
+                              ),
+                              BtnPadraoSquare(
+                                onTap: () => print("Casa clicada"),
+                                icon: Icons
+                                    .bar_chart_rounded, // Ícone personalizado
+                                textBtn: "Casa",
+                                bgIconColor: Colors.blue.shade100,
+                                iconColor: Colors.blue,
+                              ),
+                              BtnPadraoSquare(
+                                onTap: () => print("Casa clicada"),
+                                icon: Icons.home, // Ícone personalizado
+                                textBtn: "Casa",
+                                bgIconColor: Colors.blue.shade100,
+                                iconColor: Colors.blue,
+                              ),
+                              BtnPadraoSquare(
+                                onTap: () => print("Casa clicada"),
+                                icon: Icons.home, // Ícone personalizado
+                                textBtn: "Casa",
+                                bgIconColor: Colors.blue.shade100,
+                                iconColor: Colors.blue,
                               ),
                             ],
                           ),
@@ -135,7 +147,9 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
                           ),
                         ),
                       ),
-                            SizedBox(height: 50,),
+                      SizedBox(
+                        height: 50,
+                      ),
                       // Notícias
                       CardNoticias(
                         image: 'assets/imagens/alarme.png',
@@ -200,7 +214,6 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
                       ),
 
                       // Row Rolável Horizontal com 3 Botões Square Padrão
-                      
                     ],
                   ),
                 ),

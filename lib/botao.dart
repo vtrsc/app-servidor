@@ -1,14 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-
 import 'package:myproject/estilos.dart';
-
 
 class BtnPadraoSquare extends StatefulWidget {
   final bool visible;
   final Function() onTap;
- 
+  final IconData icon; // Novo parâmetro para ícone dinâmico
   final Color iconColor;
   final Color bgIconColor;
   final bool isLoading;
@@ -19,7 +17,7 @@ class BtnPadraoSquare extends StatefulWidget {
     super.key,
     this.visible = true,
     required this.onTap,
-    
+    required this.icon, // Novo parâmetro obrigatório
     this.iconColor = Estilos.colorIconsInicial,
     this.bgIconColor = Estilos.colorBGIconsInicial,
     this.isLoading = false,
@@ -37,6 +35,7 @@ class _BtnPadraoSquareState extends State<BtnPadraoSquare> {
     double baseWidth = 400;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
     return Visibility(
       visible: widget.visible,
       child: GestureDetector(
@@ -52,7 +51,7 @@ class _BtnPadraoSquareState extends State<BtnPadraoSquare> {
               BoxShadow(
                 color: Color(0x19000000),
                 blurRadius: 20,
-                offset: Offset(0, 70),
+                offset: Offset(0, 7),
                 spreadRadius: 0,
               )
             ],
@@ -67,17 +66,15 @@ class _BtnPadraoSquareState extends State<BtnPadraoSquare> {
                   Container(
                     decoration: BoxDecoration(
                       color: widget.bgIconColor,
-                      borderRadius: BorderRadius.circular(100), // Define o raio em pixels
+                      borderRadius: BorderRadius.circular(100),
                     ),
                     width: 45,
                     height: 45,
                   ),
-                
-                      Icon(
-                          Icons.add_home_work,
-                          color: widget.iconColor,
-                        ),
-                     
+                  Icon(
+                    widget.icon, // Usa o ícone passado pelo parâmetro
+                    color: widget.iconColor,
+                  ),
                 ],
               ),
               Container(
@@ -94,7 +91,7 @@ class _BtnPadraoSquareState extends State<BtnPadraoSquare> {
                         fontSize: 11,
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.w700,
-                        letterSpacing: 0.56, // Use Estilos.preto, se estiver definido em outro lugar.
+                        letterSpacing: 0.56,
                       ),
                     ),
                   ],

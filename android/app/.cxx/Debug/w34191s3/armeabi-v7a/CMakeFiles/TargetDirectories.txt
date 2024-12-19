@@ -1,0 +1,2 @@
+/home/btxch/projeto-particular/myproject/android/app/.cxx/Debug/w34191s3/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/btxch/projeto-particular/myproject/android/app/.cxx/Debug/w34191s3/armeabi-v7a/CMakeFiles/rebuild_cache.dir

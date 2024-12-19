@@ -1,0 +1,2 @@
+/home/btxch/projeto-particular/myproject/android/app/.cxx/Debug/w34191s3/x86/CMakeFiles/edit_cache.dir
+/home/btxch/projeto-particular/myproject/android/app/.cxx/Debug/w34191s3/x86/CMakeFiles/rebuild_cache.dir

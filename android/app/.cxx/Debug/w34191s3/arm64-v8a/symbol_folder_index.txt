@@ -1,0 +1,1 @@
+/home/btxch/projeto-particular/myproject/build/app/intermediates/cxx/Debug/w34191s3/obj/arm64-v8a
