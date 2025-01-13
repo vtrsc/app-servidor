@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myproject/botao.dart';
-import 'package:myproject/camera.dart';
-import 'package:myproject/config.dart';
-import 'package:myproject/estilos.dart';
-import 'package:myproject/cardNoticias.dart';
+import 'package:myproject/view/botao.dart';
+import 'package:myproject/view/cadastroPessoal.dart';
+import 'package:myproject/view/camera.dart';
+import 'package:myproject/view/cardNoticias.dart';
+import 'package:myproject/utils/config.dart';
+import 'package:myproject/utils/estilos.dart';
 
 class HomeServidorView extends StatefulWidget {
-  const HomeServidorView({Key? key}) : super(key: key);
+  const HomeServidorView({super.key});
 
   @override
   _HomeServidorViewWidgetState createState() => _HomeServidorViewWidgetState();
 }
 
-class _HomeServidorViewWidgetState extends State<HomeServidorView>
-    with WidgetsBindingObserver {
+class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsBindingObserver {
   bool isLoadingButton = false;
   bool isLoading = false;
 
@@ -77,39 +77,29 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
 
                       // Coluna Rolável Horizontal com Botões
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 31 * ffem, vertical: 15 * ffem),
+                        padding: EdgeInsets.symmetric(horizontal: 31 * ffem, vertical: 15 * ffem),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              SizedBox(
-                                  width: 10), // Espaçamento entre os botões
+                              const SizedBox(width: 10), // Espaçamento entre os botões
                               BtnPadraoSquare(
-                                onTap: () => Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) =>
-                                            const CameraApp())),
-                                icon: Icons
-                                    .add_a_photo_rounded, // Ícone personalizado
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const CameraApp())),
+                                icon: Icons.add_a_photo_rounded, // Ícone personalizado
                                 textBtn: "Casa",
                                 bgIconColor: Colors.blue.shade100,
                                 iconColor: Colors.blue,
                               ),
                               BtnPadraoSquare(
-                                onTap: () =>
-                                    Navigator.pushNamed(context, "camera"),
-                                icon: Icons
-                                    .auto_stories_rounded, // Ícone personalizado
+                                onTap: () => Navigator.pushNamed(context, "camera"),
+                                icon: Icons.auto_stories_rounded, // Ícone personalizado
                                 textBtn: "Casa",
                                 bgIconColor: Colors.blue.shade100,
                                 iconColor: Colors.blue,
                               ),
                               BtnPadraoSquare(
                                 onTap: () => print("Casa clicada"),
-                                icon: Icons
-                                    .bar_chart_rounded, // Ícone personalizado
+                                icon: Icons.bar_chart_rounded, // Ícone personalizado
                                 textBtn: "Casa",
                                 bgIconColor: Colors.blue.shade100,
                                 iconColor: Colors.blue,
@@ -122,9 +112,9 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
                                 iconColor: Colors.blue,
                               ),
                               BtnPadraoSquare(
-                                onTap: () => print("Casa clicada"),
-                                icon: Icons.home, // Ícone personalizado
-                                textBtn: "Casa",
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => LancamentoCadPessoaPage())),
+                                icon: Icons.edit_sharp, // Ícone personalizado
+                                textBtn: "Cadastro",
                                 bgIconColor: Colors.blue.shade100,
                                 iconColor: Colors.blue,
                               ),
@@ -135,8 +125,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
 
                       // Título Notícias
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 31 * ffem, vertical: 15 * ffem),
+                        padding: EdgeInsets.symmetric(horizontal: 31 * ffem, vertical: 15 * ffem),
                         child: Text(
                           'Notícias',
                           style: GoogleFonts.getFont(
@@ -147,7 +136,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       // Notícias
@@ -198,8 +187,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView>
                                 ),
                               ),
                               TextSpan(
-                                text:
-                                    ', de 13 de dezembro de 2023, os feriados de 2024.',
+                                text: ', de 13 de dezembro de 2023, os feriados de 2024.',
                                 style: TextStyle(
                                   color: Color(0xFF1C1939),
                                   fontSize: 12,

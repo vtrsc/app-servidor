@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myproject/estilos.dart';
+import 'package:myproject/utils/estilos.dart';
 
 
 class CardNoticias extends StatelessWidget {

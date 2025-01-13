@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.16
   camera: ^0.11.0+2
+  brasil_fields: ^1.15.0
 
 dev_dependencies:
   flutter_test:
