@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myproject/view/home.dart';
+import 'package:myproject/view/loginPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-      ),
+      theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home:  HomeServidorView(),
+      home: ModernLoginPage(),
     );
   }
 }
-
-
-

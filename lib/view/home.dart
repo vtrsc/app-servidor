@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myproject/utils/config.dart';
+import 'package:myproject/utils/estilos.dart';
 import 'package:myproject/view/botao.dart';
 import 'package:myproject/view/cadastroPessoal.dart';
 import 'package:myproject/view/camera.dart';
 import 'package:myproject/view/cardNoticias.dart';
-import 'package:myproject/utils/config.dart';
-import 'package:myproject/utils/estilos.dart';
 
 class HomeServidorView extends StatefulWidget {
   const HomeServidorView({super.key});
@@ -112,7 +112,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                                 iconColor: Colors.blue,
                               ),
                               BtnPadraoSquare(
-                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => LancamentoCadPessoaPage())),
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const LancamentoCadPessoaPage())),
                                 icon: Icons.edit_sharp, // Ícone personalizado
                                 textBtn: "Cadastro",
                                 bgIconColor: Colors.blue.shade100,
@@ -141,7 +141,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                       ),
                       // Notícias
                       CardNoticias(
-                        image: 'assets/imagens/alarme.png',
+                        image: 'assets/alarme.png',
                         onTap: () {},
                         noticia: const Text.rich(
                           TextSpan(
