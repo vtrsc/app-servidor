@@ -35,11 +35,12 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor: Estilos.azulGradient4,
+        backgroundColor: const Color(0xFF4A148C), // Alterado para roxo escuro
         elevation: 0, // Remover a sombra do AppBar
+        automaticallyImplyLeading: false, // Impede o botão de voltar
       ),
       body: Container(
-        color: Estilos.azulGradient4,
+        color: const Color(0xFF4A148C), // Alterado para roxo escuro
         child: Container(
           height: double.infinity,
           decoration: const BoxDecoration(
@@ -68,7 +69,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                           'Acesso Rápido',
                           style: GoogleFonts.getFont(
                             'Nunito',
-                            color: Estilos.azulGradient3,
+                            color: const Color(0xFF7C4DFF), // Cor roxa vibrante
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
@@ -85,38 +86,38 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                               const SizedBox(width: 10), // Espaçamento entre os botões
                               BtnPadraoSquare(
                                 onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const CameraApp())),
-                                icon: Icons.add_a_photo_rounded, // Ícone personalizado
+                                icon: Icons.add_a_photo_rounded,
                                 textBtn: "Casa",
-                                bgIconColor: Colors.blue.shade100,
-                                iconColor: Colors.blue,
+                                bgIconColor: Colors.deepPurple.shade100, // Alterado para roxo claro
+                                iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
                                 onTap: () => Navigator.pushNamed(context, "camera"),
-                                icon: Icons.auto_stories_rounded, // Ícone personalizado
+                                icon: Icons.auto_stories_rounded,
                                 textBtn: "Casa",
-                                bgIconColor: Colors.blue.shade100,
-                                iconColor: Colors.blue,
+                                bgIconColor: Colors.deepPurple.shade100,
+                                iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
                                 onTap: () => print("Casa clicada"),
-                                icon: Icons.bar_chart_rounded, // Ícone personalizado
+                                icon: Icons.bar_chart_rounded,
                                 textBtn: "Casa",
-                                bgIconColor: Colors.blue.shade100,
-                                iconColor: Colors.blue,
+                                bgIconColor: Colors.deepPurple.shade100,
+                                iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
                                 onTap: () => print("Casa clicada"),
-                                icon: Icons.home, // Ícone personalizado
+                                icon: Icons.home,
                                 textBtn: "Casa",
-                                bgIconColor: Colors.blue.shade100,
-                                iconColor: Colors.blue,
+                                bgIconColor: Colors.deepPurple.shade100,
+                                iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
                                 onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const LancamentoCadPessoaPage())),
-                                icon: Icons.edit_sharp, // Ícone personalizado
+                                icon: Icons.edit_sharp,
                                 textBtn: "Cadastro",
-                                bgIconColor: Colors.blue.shade100,
-                                iconColor: Colors.blue,
+                                bgIconColor: Colors.deepPurple.shade100,
+                                iconColor: Colors.deepPurple,
                               ),
                             ],
                           ),
@@ -130,7 +131,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                           'Notícias',
                           style: GoogleFonts.getFont(
                             'Nunito',
-                            color: Estilos.azulGradient3,
+                            color: const Color(0xFF7C4DFF), // Cor roxa vibrante
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
                           ),
@@ -200,8 +201,6 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                           ),
                         ),
                       ),
-
-                      // Row Rolável Horizontal com 3 Botões Square Padrão
                     ],
                   ),
                 ),

@@ -6,9 +6,7 @@ import 'package:myproject/providers/cepAPI.dart';
 import 'package:myproject/utils/estilos.dart';
 
 class LancamentoCadPessoaPage extends StatefulWidget {
-  const LancamentoCadPessoaPage({
-    super.key,
-  });
+  const LancamentoCadPessoaPage({super.key});
 
   @override
   _LancamentoCadPessoaPageState createState() => _LancamentoCadPessoaPageState();
@@ -16,42 +14,16 @@ class LancamentoCadPessoaPage extends StatefulWidget {
 
 class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
   String? radioButtonTipoCadPessoaValue;
-  final textFieldCadPessoaCpfCnpjKey = GlobalKey();
-  TextEditingController? textFieldCadPessoaCpfCnpjController;
-  String? textFieldCadPessoaCpfCnpjSelectedOption;
   TextEditingController CepController = TextEditingController();
   TextEditingController BairroController = TextEditingController();
   TextEditingController CidadeController = TextEditingController();
   TextEditingController ufController = TextEditingController();
-  TextEditingController numeroController = TextEditingController();
-  TextEditingController complementoController = TextEditingController();
-  TextEditingController logradouroController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formNomeKey = GlobalKey<FormState>();
-  String? validaNome(String? texto) {
-    if (texto!.isEmpty) {
-      return "Digite a nome";
-    }
-
-    return null;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   btnPesquisa(context) async {
     final CepProvider cepProvider = CepProvider(); // Crie uma instância do CepProvider
 
-    // Verifique se o campo de texto contém um CEP válido
     if (CepController.text.length < 8) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('CEP Inválido')),
@@ -59,10 +31,8 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
       return;
     }
 
-    // Chame o método buscarEnderecoPorCep passando o CEP
     CepCorreiosModel? buscaEnderecoModel = await cepProvider.buscarEnderecoPorCep(CepController.text);
 
-    // Caso ache um CEP válido salva os valores
     if (buscaEnderecoModel != null) {
       CepController.text = buscaEnderecoModel.cep ?? '';
       BairroController.text = buscaEnderecoModel.bairro ?? '';
@@ -82,19 +52,18 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
     double ffem = fem * 0.97;
 
     return Scaffold(
-      key: scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Estilos.branco,
-        shadowColor: Estilos.cinza,
-        automaticallyImplyLeading: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-          color: Estilos.preto,
+        title: Text(
+          'Cadastro Pessoal',
+          style: GoogleFonts.getFont(
+            'Nunito',
+            color: Estilos.branco,
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
         ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 4,
+        backgroundColor: const Color(0xFF4A148C),
+        elevation: 0,
       ),
       backgroundColor: Estilos.branco,
       body: SingleChildScrollView(
@@ -124,96 +93,56 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: TextFormField(
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                        ],
-                        key: textFieldCadPessoaCpfCnpjKey,
-                        obscureText: false,
-                        readOnly: true,
-                        decoration: const InputDecoration(
-                          labelText: 'CPF/CNPJ *',
-                          hintText: 'Informe o CPF/CNPJ',
-                          border: OutlineInputBorder(),
-                          labelStyle: TextStyle(
-                            fontFamily: 'Poppins',
-                            color: Estilos.preto,
-                          ),
-                        ),
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: 14,
-                        ),
-                        keyboardType: TextInputType.number,
-                        maxLength: 15,
-                      ))
+                  child: TextFormField(
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
                     ],
+                    obscureText: false,
+                    readOnly: true,
+                    decoration: const InputDecoration(
+                      labelText: 'CPF/CNPJ *',
+                      hintText: 'Informe o CPF/CNPJ',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    keyboardType: TextInputType.number,
+                    maxLength: 15,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: TextFormField(
-                            validator: validaNome,
-                            key: formNomeKey,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Nome Pessoa/Empresa *',
-                              hintText: 'Informe o Nome da Pessoa/Empresa',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            keyboardType: TextInputType.text,
-                            maxLength: 250,
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Nome Pessoa/Empresa *',
+                      hintText: 'Informe o Nome',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    keyboardType: TextInputType.text,
+                    maxLength: 250,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: TextFormField(
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Telefone',
-                              hintText: 'Informe o Telefone',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            keyboardType: TextInputType.number,
-                            maxLength: 15,
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: TextFormField(
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Telefone',
+                      hintText: 'Informe o Telefone',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    keyboardType: TextInputType.number,
+                    maxLength: 15,
                   ),
                 ),
                 Padding(
@@ -225,248 +154,102 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: TextFormField(
-                            textInputAction: TextInputAction.next,
-                            obscureText: false,
                             controller: CepController,
-                            decoration: const InputDecoration(
-                              labelText: 'CEP *',
-                              hintText: 'Informe o CEP',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
+                            obscureText: false,
                             keyboardType: TextInputType.number,
                             maxLength: 10,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(backgroundColor: Estilos.azulClaro),
-                        icon: const Icon(Icons.search),
-                        label: const Text(
-                          '',
-                          style: TextStyle(color: Estilos.branco, fontSize: 25),
-                        ),
-                        onPressed: () {
-                          btnPesquisa(context);
-                        },
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                          child: TextFormField(
-                            controller: numeroController,
-                            obscureText: false,
-                            keyboardType: TextInputType.number,
-                            maxLength: 5,
-                            decoration: const InputDecoration(
-                              labelText: 'Número *',
-                              hintText: 'Informe o número',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                          child: TextFormField(
-                            controller: complementoController,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Complemento',
-                              hintText: 'Informe o complemento',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            maxLength: 50,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                          child: TextFormField(
-                            controller: logradouroController,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Logradouro',
-                              hintText: 'Informe o Logradouro',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            maxLength: 200,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: TextFormField(
-                            controller: BairroController,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Bairro',
-                              hintText: 'Bairro',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            maxLength: 50,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                          child: TextFormField(
-                            controller: CidadeController,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Cidade',
-                              hintText: 'Cidade',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            maxLength: 50,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                          child: TextFormField(
-                            controller: ufController,
-                            obscureText: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Estado',
-                              hintText: 'Estado',
-                              border: OutlineInputBorder(),
-                            ),
-                            style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: 14,
-                            ),
-                            maxLength: 50,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                        height: 10,
-                      ),
-                      ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(backgroundColor: Estilos.azulClaro),
-                          icon: const Icon(Icons.save),
-                          label: const Text(
-                            'Salvar',
-                            style: TextStyle(color: Estilos.branco, fontSize: 25),
-                          ),
-                          onPressed: () {
-                            btnPesquisa;
-                          }),
-                    ],
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 5, 20, 0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-
-                            /* child: FFButtonWidget(
-                              onPressed: () async {
-                                await Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 300),
-                                    reverseDuration:
-                                        Duration(milliseconds: 300),
-                                    child: LancamentoPage(),
-                                  ),
-                                );
-                              },
-                              text: 'Incluir Pessoa',
-                              options: FFButtonOptions(
-                                color: Estilos.azulClaro,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
+                            decoration: InputDecoration(
+                              labelText: 'CEP *',
+                              hintText: 'Informe o CEP',
+                              border: const OutlineInputBorder(),
+                              suffixIcon: IconButton(
+                                icon: const Icon(Icons.search),
+                                onPressed: () {
+                                  btnPesquisa(context);
+                                },
                               ),
-                            ), */
+                            ),
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ),
                     ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                  child: TextFormField(
+                    controller: BairroController,
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Bairro *',
+                      hintText: 'Informe o Bairro',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    maxLength: 50,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                  child: TextFormField(
+                    controller: CidadeController,
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Cidade *',
+                      hintText: 'Informe a Cidade',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    maxLength: 50,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                  child: TextFormField(
+                    controller: ufController,
+                    obscureText: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Estado *',
+                      hintText: 'Informe o Estado',
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 14,
+                    ),
+                    maxLength: 50,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4A148C), // Cor de fundo roxa
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(0), // Borda quadrada
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 32), // Ajuste o padding para um tamanho mais adequado
+                    minimumSize: const Size(double.infinity, 60), // O botão ocupará toda a largura e terá altura de 60
+                  ),
+                  onPressed: () {
+                    // Ação ao salvar os dados
+                  },
+                  child: Text(
+                    'Salvar',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18, // Tamanho da fonte ajustado
+                      fontWeight: FontWeight.w600,
+                      color: Estilos.branco, // Cor do texto em branco
+                    ),
                   ),
                 ),
               ],
