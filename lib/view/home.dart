@@ -26,18 +26,26 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
     return Scaffold(
       backgroundColor: Estilos.branco,
       appBar: AppBar(
-        title: Text(
-          'Home',
-          style: GoogleFonts.getFont(
-            'Nunito',
-            color: Estilos.branco,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+        automaticallyImplyLeading: false, // Impede o botão de voltar
+        backgroundColor: const Color(0xFF4A148C), // Cor de fundo do AppBar
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF4A148C), Color(0xFF7C4DFF)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Image.asset(
+              'assets/nextbyte.png', // Caminho correto da imagem
+              height: 50, // Ajuste a altura conforme necessário
+              color: Colors.white, // Define a cor branca para a imagem
+              fit: BoxFit.contain, // Mantém a proporção da imagem
+            ),
           ),
         ),
-        backgroundColor: const Color(0xFF4A148C), // Alterado para roxo escuro
-        elevation: 0, // Remover a sombra do AppBar
-        automaticallyImplyLeading: false, // Impede o botão de voltar
       ),
       body: Container(
         color: const Color(0xFF4A148C), // Alterado para roxo escuro

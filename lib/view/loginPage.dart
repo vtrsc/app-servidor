@@ -17,10 +17,10 @@ class _ModernLoginPageState extends State<ModernLoginPage> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false, // Isso previne que o layout mude com o teclado
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // O conteúdo da tela
+          // Fundo com gradiente
           Container(
             width: size.width,
             height: size.height,
@@ -32,10 +32,10 @@ class _ModernLoginPageState extends State<ModernLoginPage> {
               ),
             ),
           ),
-          // Centraliza o conteúdo da tela e impede o deslocamento do layout
+          // Conteúdo principal
           Center(
             child: SingleChildScrollView(
-              reverse: true, // Isso ajuda a rolar para cima quando o teclado é ativado
+              reverse: true,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.08),
                 child: Card(
@@ -85,7 +85,7 @@ class _ModernLoginPageState extends State<ModernLoginPage> {
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                                  color: Colors.grey, // Cor do ícone
+                                  color: Colors.grey,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -112,9 +112,14 @@ class _ModernLoginPageState extends State<ModernLoginPage> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState?.validate() ?? false) {
-                                  // Realizar a ação de login
+                                  // Ação de login
                                 }
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => (const HomeServidorView())));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const HomeServidorView(),
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: const EdgeInsets.symmetric(vertical: 16),
@@ -163,6 +168,24 @@ class _ModernLoginPageState extends State<ModernLoginPage> {
                   ),
                 ),
               ),
+            ),
+          ),
+          // Ícone de copyright e imagem na parte inferior
+          Positioned(
+            bottom: 16,
+            left: 0,
+            right: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              
+                Image.asset(
+                  'assets/nextbyte.png', // Substitua pelo caminho da sua imagem
+                  height: 40,
+                  width: 80,
+                  color: Colors.white,
+                ),
+              ],
             ),
           ),
         ],

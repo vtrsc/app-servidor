@@ -53,17 +53,25 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Cadastro Pessoal',
-          style: GoogleFonts.getFont(
-            'Nunito',
-            color: Estilos.branco,
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
+        backgroundColor: const Color(0xFF4A148C), // Cor de fundo do AppBar
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFF4A148C), Color(0xFF7C4DFF)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+          child: Center(
+            child: Image.asset(
+              'assets/nextbyte.png', // Caminho correto da imagem
+              height: 40, // Ajuste a altura conforme necessário
+              color: Colors.white, // Define a cor branca para a imagem
+              fit: BoxFit.contain, // Mantém a proporção da imagem
+            ),
           ),
         ),
-        backgroundColor: const Color(0xFF4A148C),
-        elevation: 0,
       ),
       backgroundColor: Estilos.branco,
       body: SingleChildScrollView(
@@ -77,20 +85,6 @@ class _LancamentoCadPessoaPageState extends State<LancamentoCadPessoaPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16 * fem, 26 * fem, 0 * fem, 6 * fem),
-                  child: Text(
-                    'Munícipe',
-                    style: GoogleFonts.getFont(
-                      'Comfortaa',
-                      fontSize: 27 * ffem,
-                      fontWeight: FontWeight.w400,
-                      height: 1.115 * ffem / fem,
-                      letterSpacing: -0.54 * fem,
-                      color: Estilos.preto,
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                   child: TextFormField(
