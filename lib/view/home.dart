@@ -7,6 +7,7 @@ import 'package:myproject/view/botao.dart';
 import 'package:myproject/view/cadastroPessoal.dart';
 import 'package:myproject/view/camera.dart';
 import 'package:myproject/view/cardNoticias.dart';
+import 'package:myproject/view/videoGenerator.dart';
 
 class HomeServidorView extends StatefulWidget {
   const HomeServidorView({super.key});
@@ -95,17 +96,11 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                               BtnPadraoSquare(
                                 onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const CameraApp())),
                                 icon: Icons.add_a_photo_rounded,
-                                textBtn: "Casa",
+                                textBtn: "Camera",
                                 bgIconColor: Colors.deepPurple.shade100, // Alterado para roxo claro
                                 iconColor: Colors.deepPurple,
                               ),
-                              BtnPadraoSquare(
-                                onTap: () => Navigator.pushNamed(context, "camera"),
-                                icon: Icons.auto_stories_rounded,
-                                textBtn: "Casa",
-                                bgIconColor: Colors.deepPurple.shade100,
-                                iconColor: Colors.deepPurple,
-                              ),
+
                               BtnPadraoSquare(
                                 onTap: () => print("Casa clicada"),
                                 icon: Icons.bar_chart_rounded,
@@ -114,12 +109,13 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                                 iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
-                                onTap: () => print("Casa clicada"),
-                                icon: Icons.home,
-                                textBtn: "Casa",
-                                bgIconColor: Colors.deepPurple.shade100,
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => Videogenerator())),
+                                icon: Icons.add_location_rounded,
+                                textBtn: "Camera",
+                                bgIconColor: Colors.deepPurple.shade100, // Alterado para roxo claro
                                 iconColor: Colors.deepPurple,
                               ),
+
                               BtnPadraoSquare(
                                 onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const LancamentoCadPessoaPage())),
                                 icon: Icons.edit_sharp,
