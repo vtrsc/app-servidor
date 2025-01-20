@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class Videogenerator extends StatefulWidget {
+  const Videogenerator({super.key});
+
   @override
   _VideogeneratorState createState() => _VideogeneratorState();
 }
@@ -14,10 +17,9 @@ class _VideogeneratorState extends State<Videogenerator> {
   bool _isLoading = false;
   String? _videoUrl;
 
-  final String _apiKey = '<your-api-key>'; // Substitua pela sua API Key.
-  final String _uploadUrl = 'https://upload.heygen.com/v1/talking_photo';
+  final String _apiKey = 'MWViOTU5MzYyMmM3NDg4ODg2N2QzYTIwZmVjNDM3NDgtMTY5NTg1MzIwNQ==';
+  final String _uploadUrl = 'https://api.heygen.com/v1/video';
 
-  // Método para selecionar imagem da galeria
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -25,15 +27,13 @@ class _VideogeneratorState extends State<Videogenerator> {
       setState(() {
         _selectedImage = File(image.path);
       });
-      
     }
   }
 
-  // Método para enviar a imagem e obter o vídeo
   Future<void> _uploadAndGenerateVideo() async {
     if (_selectedImage == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Por favor, selecione uma imagem primeiro!')),
+        const SnackBar(content: Text('Por favor, selecione uma imagem primeiro!')),
       );
       return;
     }
@@ -47,26 +47,29 @@ class _VideogeneratorState extends State<Videogenerator> {
       final response = await http.post(
         Uri.parse(_uploadUrl),
         headers: {
-          'x-api-key': _apiKey,
-          'Content-Type': 'image/jpeg',
+          'Authorization': 'Bearer $_apiKey',
+          'Content-Type': 'application/json',
         },
-        body: bytes,
+        body: jsonEncode({
+          "template_id": "default",
+          "text": "Olá! Este é um vídeo gerado automaticamente.",
+          "photo": base64Encode(bytes),
+        }),
       );
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = json.decode(response.body);
 
-        // Simulando a criação do vídeo com uma URL fictícia (substitua com lógica real da API).
         setState(() {
-          _videoUrl = 'https://video.simulado.com/dancing_video.mp4';
+          _videoUrl = responseData['data']['video_url'];
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Vídeo gerado com sucesso!')),
+          const SnackBar(content: Text('Vídeo gerado com sucesso!')),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Erro ao enviar imagem: ${response.body}')),
+          SnackBar(content: Text('Erro: ${response.body}')),
         );
       }
     } catch (e) {
@@ -84,7 +87,7 @@ class _VideogeneratorState extends State<Videogenerator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dançando com HeyGen'),
+        title: const Text('Dançando com HeyGen'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -98,38 +101,44 @@ class _VideogeneratorState extends State<Videogenerator> {
                 fit: BoxFit.cover,
               )
             else
-              Placeholder(
-                fallbackHeight: 200,
-                color: Colors.grey,
+              const Column(
+                children: [
+                  Icon(
+                    Icons.image_outlined,
+                    size: 100,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Selecione uma imagem',
+                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                  ),
+                ],
               ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _pickImage,
-              child: Text('Selecionar Imagem'),
+              child: const Text('Selecionar Imagem'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _isLoading ? null : _uploadAndGenerateVideo,
-              child: _isLoading
-                  ? CircularProgressIndicator(color: Colors.white)
-                  : Text('Gerar Vídeo Dançando'),
+              child: _isLoading ? const CircularProgressIndicator(color: Colors.white) : const Text('Gerar Vídeo'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (_videoUrl != null)
               Column(
                 children: [
-                  Text(
+                  const Text(
                     'Seu vídeo está pronto! Clique abaixo para assistir:',
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     onPressed: () {
-                      // Abre o vídeo no navegador ou player.
-                      // Substitua por uma integração mais avançada, se necessário.
                       print('URL do vídeo: $_videoUrl');
                     },
-                    child: Text('Assistir ao Vídeo'),
+                    child: const Text('Assistir ao Vídeo'),
                   ),
                 ],
               ),
