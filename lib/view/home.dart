@@ -6,7 +6,6 @@ import 'package:myproject/utils/estilos.dart';
 import 'package:myproject/view/botao.dart';
 import 'package:myproject/view/cadastroPessoal.dart';
 import 'package:myproject/view/camera.dart';
-import 'package:myproject/view/cardNoticias.dart';
 import 'package:myproject/view/videoGenerator.dart';
 
 class HomeServidorView extends StatefulWidget {
@@ -109,7 +108,7 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                                 iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
-                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => Videogenerator())),
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => const ModifyTemplateScreen())),
                                 icon: Icons.add_location_rounded,
                                 textBtn: "Camera",
                                 bgIconColor: Colors.deepPurple.shade100, // Alterado para roxo claro
@@ -145,66 +144,6 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                         height: 50,
                       ),
                       // Notícias
-                      CardNoticias(
-                        image: 'assets/alarme.png',
-                        onTap: () {},
-                        noticia: const Text.rich(
-                          TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'A ',
-                                style: TextStyle(
-                                  color: Color(0xFF1C1939),
-                                  fontSize: 12,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.65,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'Secretaria de Inovação e Administração ',
-                                style: TextStyle(
-                                  color: Color(0xFF1C1939),
-                                  fontSize: 12,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.65,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'comunica, nos termos do ',
-                                style: TextStyle(
-                                  color: Color(0xFF1C1939),
-                                  fontSize: 12,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.65,
-                                ),
-                              ),
-                              TextSpan(
-                                text: 'Decreto Municipal nº 18.209',
-                                style: TextStyle(
-                                  color: Color(0xFF1C1939),
-                                  fontSize: 12,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w700,
-                                  height: 1.65,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ', de 13 de dezembro de 2023, os feriados de 2024.',
-                                style: TextStyle(
-                                  color: Color(0xFF1C1939),
-                                  fontSize: 12,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.65,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
