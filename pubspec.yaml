@@ -41,6 +41,7 @@ dependencies:
   camera: ^0.11.0+2
   brasil_fields: ^1.15.0
   image_picker: ^1.1.2
+  flutter_cube: ^0.1.1
   
   
 
@@ -69,7 +70,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    # Icons Personalizado 
+    - assets/cube/Jeep_Renegade_2016.obj
+    - assets/cube/Jeep_Renegade_2016.mtl 
   
   
 

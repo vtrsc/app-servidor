@@ -6,6 +6,7 @@ import 'package:myproject/utils/estilos.dart';
 import 'package:myproject/view/botao.dart';
 import 'package:myproject/view/cadastroPessoal.dart';
 import 'package:myproject/view/camera.dart';
+import 'package:myproject/view/modelo3d.dart';
 import 'package:myproject/view/videoGenerator.dart';
 
 class HomeServidorView extends StatefulWidget {
@@ -101,10 +102,10 @@ class _HomeServidorViewWidgetState extends State<HomeServidorView> with WidgetsB
                               ),
 
                               BtnPadraoSquare(
-                                onTap: () => print("Casa clicada"),
-                                icon: Icons.bar_chart_rounded,
-                                textBtn: "Casa",
-                                bgIconColor: Colors.deepPurple.shade100,
+                                onTap: () => Navigator.push(context, CupertinoPageRoute(builder: (context) => ProductPage())),
+                                icon: Icons.abc_outlined,
+                                textBtn: "3D",
+                                bgIconColor: Colors.deepPurple.shade100, // Alterado para roxo claro
                                 iconColor: Colors.deepPurple,
                               ),
                               BtnPadraoSquare(
