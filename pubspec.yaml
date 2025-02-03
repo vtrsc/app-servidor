@@ -71,7 +71,8 @@ flutter:
   assets:
     - assets/
     - assets/cube/Jeep_Renegade_2016.obj
-    - assets/cube/Jeep_Renegade_2016.mtl 
+    - assets/cube/Jeep_Renegade_2016.mtl
+    - assets/cube/carjeep.jpg
   
   
 

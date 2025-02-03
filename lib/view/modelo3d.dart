@@ -16,9 +16,12 @@ class ProductPage extends StatelessWidget {
           Expanded(
             child: Cube(
               onSceneCreated: (Scene scene) {
-                scene.world.add(Object(
-                  fileName: "assets/cube/Jeep_Renegade_2016.obj",
-                ));
+                final obj = Object(fileName: "assets/cube/Jeep_Renegade_2016.obj");
+                // Ajustando a rotação para mostrar o produto de frente, mas um pouco ao lado
+                obj.rotation.setValues(0, 60, 0); // 0 no eixo X, 45 no eixo Y, 0 no eixo Z
+                obj.scale.setValues(8.0, 8.0, 8.0); // Escala do modelo para 8.0 em todos os eixos
+                obj.updateTransform(); // Aplica as transformações
+                scene.world.add(obj);
               },
             ),
           ),
